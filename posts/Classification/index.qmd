@@ -1,5 +1,5 @@
 ---
-title: "Classification Block"
+title: "Classification Blog"
 author: "Keaton Boodlal"
 date: "2023-12-03"
 categories: [Classification, Machine Learning]
