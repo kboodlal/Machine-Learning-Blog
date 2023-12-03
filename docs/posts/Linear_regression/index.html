@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Linear Regression Blog</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Linear Regression Blog</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Linear Regression</div>
                 <div class="quarto-category">Machine Learning</div>
@@ -173,6 +173,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Is on average off by"</span>, np.average(league_no_support[<span class="st">'diff percentage'</span>]), <span class="st">"%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In conclusion, due to the accuracy of the results, I would like to say that creep score can be related to gold earned in a game linearly. And that this prediction is accurately represents the data with it only being an average of 3.8% off.</p>
 
+
+<!-- -->
 
 
 </main> <!-- /main -->
@@ -255,6 +257,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
@@ -408,9 +461,58 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Linear Regression Blog"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Keaton Boodlal"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2023-11-29"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Linear Regression, Machine Learning]</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>For my project on linear regression, I used data from a game called League of Legends. League of Legends is a team-based game involving 2 teams, 5 players on each team. In this game, players use gold to buy items which increase their strength for the team fights. There are 5 different roles, with over 100 different legends. For this project, I decided to see how a character's creep score relates to their gold. Since you get gold for each creep score you have, it would make sense that the relationship is linear, however, getting creep score is not the only way for one to get gold in the game, it is just a method to do so.</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>I used python as the programming language for this project. Using data from millions of games, I took the average of most characters creep score, filtered out support, a role that generally doesn't really on creep score for gold, and then plotted it. I then added a linear regression model. Which predicted that Gold = 25.3<span class="sc">\*</span>Creep Score + 7499.6.</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="in">``` python</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="in">``` python</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>league_data <span class="op">=</span> pandas.read_csv(<span class="st">'League_of_Legends_stats.csv'</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>league_data[<span class="st">'Gold'</span>] <span class="op">=</span> league_data[<span class="st">'Gold'</span>].<span class="bu">map</span>(<span class="kw">lambda</span> s: <span class="bu">int</span>(s.replace(<span class="st">","</span>, <span class="st">""</span>)))</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>league_no_support <span class="op">=</span> league_data[league_data[<span class="st">'CS'</span>] <span class="op">&gt;=</span> <span class="dv">125</span>]</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>league_no_support <span class="op">=</span> league_no_support.sort_values(by<span class="op">=</span><span class="st">'CS'</span>, ascending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> league_no_support.plot.scatter(<span class="st">'CS'</span>, <span class="st">'Gold'</span>, s<span class="op">=</span><span class="dv">10</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">15</span>))</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>lin_reg <span class="op">=</span> LinearRegression()</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>lin_reg.fit(league_no_support[<span class="st">'CS'</span>].values.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), league_no_support[<span class="st">'Gold'</span>].values.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>line <span class="op">=</span> lin_reg.predict(league_no_support[<span class="st">'CS'</span>].values.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Gold ="</span>, lin_reg.coef_[<span class="dv">0</span>][<span class="dv">0</span>], <span class="st">"cs +"</span>, lin_reg.intercept_[<span class="dv">0</span>])</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Creep Score"</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Relationship between Creep Score and Gold"</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>league_no_support[<span class="st">'Gold Prediction'</span>] <span class="op">=</span> line</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>plot.add_line(matplotlib.lines.Line2D(league_no_support[<span class="st">'CS'</span>], league_no_support[<span class="st">'Gold Prediction'</span>]))</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="al">![](csVgold.jpg)</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>After plotting the linear regression, I wanted to know how well the model fit the data. So I made a new data column which took the absolute value of predicted gold subtracted from the creep score. Then dividing it by the creep score to get the percentage that it was off by. Taking the average of these values, I got that the linear regression is off by 443.9 gold or 3.8%. 3.8% is reasonably accurate.</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="in">``` python</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>league_no_support[<span class="st">'diff'</span>] <span class="op">=</span> <span class="bu">abs</span>(league_no_support[<span class="st">'Gold'</span>] <span class="op">-</span> league_no_support[<span class="st">'Gold Prediction'</span>])</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>league_no_support[<span class="st">'diff percentage'</span>] <span class="op">=</span> league_no_support[<span class="st">'diff'</span>] <span class="op">/</span> league_no_support[<span class="st">'Gold'</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Is on average off by"</span>, np.average(league_no_support[<span class="st">'diff'</span>]), <span class="st">"gold"</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Is on average off by"</span>, np.average(league_no_support[<span class="st">'diff percentage'</span>]), <span class="st">"%"</span>)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>In conclusion, due to the accuracy of the results, I would like to say that creep score can be related to gold earned in a game linearly. And that this prediction is accurately represents the data with it only being an average of 3.8% off.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/kboodlal/Machine_Learning_Blog_Code/blob/main/posts/Linear_regression/index.qmd" class="toc-action">View source</a></p></div></div></div></div></footer></body></html>

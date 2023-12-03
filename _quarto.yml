@@ -4,10 +4,13 @@ project:
 
 website:
   title: "Machine Learning Blog"
+  repo-url: https://github.com/kboodlal/Machine_Learning_Blog_Code
+  repo-actions: [source]
 format:
   html:
     theme: cosmo
     css: styles.css
+    code-tools: true
 
 editor: visual
 
