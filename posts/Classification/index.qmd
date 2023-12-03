@@ -3,7 +3,6 @@ title: "Classification Block"
 author: "Keaton Boodlal"
 date: "2023-12-03"
 categories: [Classification, Machine Learning]
-image: "confusion_matrix.jgp"
 ---
 
 For my classification project, I decided to do a fake news detector using python. In recent times, the spread of fake news has been increasing due to the internet. This issue was at an all-time high during the 2016 election. Even though fake news has been around for a long time, through propaganda and other methods, it isn\'t as effective as it is today due to the internet.

@@ -3,7 +3,6 @@ title: "Outlier Detection Blog"
 author: "Keaton Boodlal"
 date: "2023-12-02"
 categories: [Outlier Detection, Machine Learning]
-image: "averageDeaths.jpg"
 ---
 
 For my blog on Outlier Detection, similar to the project on linear regression, I used data League of Legends, but instead of using data from the competitive matchmaking, I used data from the professional tournament that happened in 2022. The outlier I detected was a high difference in average number of deaths over the tournament.
