@@ -44,3 +44,5 @@ print("Lower Limit:", bot)
 outliers = league_data[(league_data['Avg deaths'] < bot) | (league_data['Avg deaths'] > top)]
 print(outliers)
 ```
+
+Github View Source button takes you to a github page that says not found, however if you click on the default branch button, it takes you to the repo that has the main.py file containing the code for the 3 blog posts.

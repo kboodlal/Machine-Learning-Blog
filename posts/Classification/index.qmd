@@ -49,3 +49,5 @@ plt.show()
 ![](confusion_matrix.jpg)
 
 In conclusion, I think this project was successful overall, being able to predict fake news with around a 93% accuracy is what I consider good. Overall I am satisfied with how it performs and the speed at which it processes all the data.
+
+Github View Source button takes you to a github page that says not found, however if you click on the default branch button, it takes you to the repo that has the main.py file containing the code for the 3 blog posts.

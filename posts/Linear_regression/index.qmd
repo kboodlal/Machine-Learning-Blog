@@ -46,3 +46,5 @@ print("Is on average off by", np.average(league_no_support['diff percentage']), 
 ```
 
 In conclusion, due to the accuracy of the results, I would like to say that creep score can be related to gold earned in a game linearly. And that this prediction is accurately represents the data with it only being an average of 3.8% off.
+
+Github View Source button takes you to a github page that says not found, however if you click on the default branch button, it takes you to the repo that has the main.py file containing the code for the 3 blog posts.Github View Source button takes you to a github page that says not found, however if you click on the default branch button, it takes you to the repo that has the main.py file containing the code for the 3 blog posts.
