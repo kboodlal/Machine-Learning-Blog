@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Classification/index.html",
       "/posts/Outlier_Detection/index.html",
       "/posts/Linear_regression/index.html"
     ]
