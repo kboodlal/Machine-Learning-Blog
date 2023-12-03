@@ -1,10 +1,10 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: "Machine Learning Blog"
-  format:
-    
+format:
   html:
     theme: cosmo
     css: styles.css
