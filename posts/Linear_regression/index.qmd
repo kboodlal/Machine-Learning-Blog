@@ -5,7 +5,9 @@ date: "2023-11-29"
 categories: [Linear Regression, Machine Learning]
 ---
 
-For my project on linear regression, I used data from a game called League of Legends. League of Legends is a team-based game involving 2 teams, 5 players on each team. In this game, players use gold to buy items which increase their strength for the team fights. There are 5 different roles, with over 100 different legends. For this project, I decided to see how a character's creep score relates to their gold. Since you get gold for each creep score you have, it would make sense that the relationship is linear, however, getting creep score is not the only way for one to get gold in the game, it is just a method to do so. Using data from millions of games, I took the average of most characters creep score, filtered out support, a role that generally doesn't really on creep score for gold, and then plotted it. I then added a linear regression model. Which predicted that Gold = 25.3\*Creep Score + 7499.6.
+For my project on linear regression, I used data from a game called League of Legends. League of Legends is a team-based game involving 2 teams, 5 players on each team. In this game, players use gold to buy items which increase their strength for the team fights. There are 5 different roles, with over 100 different legends. For this project, I decided to see how a character's creep score relates to their gold. Since you get gold for each creep score you have, it would make sense that the relationship is linear, however, getting creep score is not the only way for one to get gold in the game, it is just a method to do so.
+
+I used python as the programming language for this project. Using data from millions of games, I took the average of most characters creep score, filtered out support, a role that generally doesn't really on creep score for gold, and then plotted it. I then added a linear regression model. Which predicted that Gold = 25.3\*Creep Score + 7499.6.
 
 ``` python
 import pandas

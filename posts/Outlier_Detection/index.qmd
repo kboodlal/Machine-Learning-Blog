@@ -1,0 +1,47 @@
+---
+title: "Outlier Detection Blog"
+author: "Keaton Boodlal"
+date: "2023-12-02"
+categories: [Outlier Detection, Machine Learning]
+image: "averageDeaths.jpg"
+---
+
+For my blog on Outlier Detection, similar to the project on linear regression, I used data League of Legends, but instead of using data from the competitive matchmaking, I used data from the professional tournament that happened in 2022. The outlier I detected was a high difference in average number of deaths over the tournament.
+
+I used python for this blog. This time, without taking out supports from the data and using average deaths as the delimiter, I made a bar chart which made an almost belle curve.
+
+``` python
+import pandas
+import matplotlib
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+``` python
+league_data = pandas.read_csv('League_Worlds_2022.csv')
+sns.set_theme()
+sns.displot(data=league_data['Avg deaths']).set(title="Average Deaths", xlabel="Average Deaths",ylabel="Number of Players")
+plt.show()
+```
+
+![](averageDeaths.jpg)
+
+After plotting it, I calculated the mean, and standard deviation. Then printed out the values that would be counted as outliers but checking if they are greater than three standard deviations away from the mean and printing those players names out. The two players that were statistical outliers in the abnormally high amount of deaths were Farfetch and Jelly.
+
+The mean number of deaths were 2.8, with a standard deviation of 1.1. The upper limit being
+
+6 deaths and the lower limit being -0.5. Since the lower limit is in the negative, Farfetch and Jelly were over the upper limit at 6 deaths, with 6.4 and 6 average deaths respectively.
+
+``` python
+mean = league_data['Avg deaths'].mean()
+std = league_data['Avg deaths'].std()
+bot = mean - 3 * std
+top = mean + 3 * std
+print("Mean:", mean)
+print("Standard Dev:", std)
+print("Upper Limit:", top)
+print("Lower Limit:", bot)
+outliers = league_data[(league_data['Avg deaths'] < bot) | (league_data['Avg deaths'] > top)]
+print(outliers)
+```

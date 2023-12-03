@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Harlow Malloc">
+<meta name="author" content="Keaton Boodlal">
 <meta name="dcterms.date" content="2023-12-02">
 
-<title>Machine Learning Blog - Post With Code</title>
+<title>Machine Learning Blog - Outlier Detection Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -105,11 +105,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Post With Code</h1>
+      <h1 class="title">Outlier Detection Blog</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">news</div>
-                <div class="quarto-category">code</div>
-                <div class="quarto-category">analysis</div>
+                <div class="quarto-category">Outlier Detection</div>
+                <div class="quarto-category">Machine Learning</div>
               </div>
                   </div>
   </div>
@@ -120,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Harlow Malloc </p>
+               <p>Keaton Boodlal </p>
             </div>
     </div>
       
@@ -145,13 +144,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>This is a post with executable code.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
+<p>For my blog on Outlier Detection, similar to the project on linear regression, I used data League of Legends, but instead of using data from the competitive matchmaking, I used data from the professional tournament that happened in 2022. The outlier I detected was a high difference in average number of deaths over the tournament.</p>
+<p>I used python for this blog. This time, without taking out supports from the data and using average deaths as the delimiter, I made a bar chart which made an almost belle curve.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>league_data <span class="op">=</span> pandas.read_csv(<span class="st">'League_Worlds_2022.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sns.set_theme()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sns.displot(data<span class="op">=</span>league_data[<span class="st">'Avg deaths'</span>]).<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Average Deaths"</span>, xlabel<span class="op">=</span><span class="st">"Average Deaths"</span>,ylabel<span class="op">=</span><span class="st">"Number of Players"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="averageDeaths.jpg" class="img-fluid"></p>
+<p>After plotting it, I calculated the mean, and standard deviation. Then printed out the values that would be counted as outliers but checking if they are greater than three standard deviations away from the mean and printing those players names out. The two players that were statistical outliers in the abnormally high amount of deaths were Farfetch and Jelly.</p>
+<p>The mean number of deaths were 2.8, with a standard deviation of 1.1. The upper limit being</p>
+<p>6 deaths and the lower limit being -0.5. Since the lower limit is in the negative, Farfetch and Jelly were over the upper limit at 6 deaths, with 6.4 and 6 average deaths respectively.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> league_data[<span class="st">'Avg deaths'</span>].mean()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>std <span class="op">=</span> league_data[<span class="st">'Avg deaths'</span>].std()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>bot <span class="op">=</span> mean <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> std</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>top <span class="op">=</span> mean <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> std</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mean:"</span>, mean)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Standard Dev:"</span>, std)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Upper Limit:"</span>, top)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Lower Limit:"</span>, bot)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>outliers <span class="op">=</span> league_data[(league_data[<span class="st">'Avg deaths'</span>] <span class="op">&lt;</span> bot) <span class="op">|</span> (league_data[<span class="st">'Avg deaths'</span>] <span class="op">&gt;</span> top)]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(outliers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 
