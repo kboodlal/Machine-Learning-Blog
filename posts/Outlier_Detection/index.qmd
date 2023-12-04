@@ -45,4 +45,6 @@ outliers = league_data[(league_data['Avg deaths'] < bot) | (league_data['Avg dea
 print(outliers)
 ```
 
-Github View Source button takes you to a github page that says not found, however if you click on the default branch button, it takes you to the repo that has the main.py file containing the code for the 3 blog posts.
+Github View Source button takes you to the source code for the .qmd file.
+
+[Outlier Detection Jupiter Notebook](https://github.com/kboodlal/Machine_Learning_Blog_Code/blob/master/Outlier_Project.ipynb)

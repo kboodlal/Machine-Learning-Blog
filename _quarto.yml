@@ -4,7 +4,8 @@ project:
 
 website:
   title: "Machine Learning Blog"
-  repo-url: https://github.com/kboodlal/Machine_Learning_Blog_Code
+  repo-url: https://github.com/kboodlal/Machine-Learning-Blog
+  repo-branch: "master"
   repo-actions: [source]
 format:
   html:
