@@ -1,5 +1,5 @@
 ---
-title: "Clustering"
+title: "Clustering Blog"
 author: "Keaton Boodlal"
 date: "2023-12-04"
 categories: [Clustering, Machine Learning]
@@ -64,15 +64,15 @@ j=0
 while(diff!=0):
     inter_data=data_set
     i=1
-    for index1,row_c in cent.iterrows():
+    for i1,r_c in cent.iterrows():
         diff_list=[]
-        for index2,row_d in inter_data.iterrows():
-            d=np.sqrt((row_c['Weight']-row_d['Weight'])**2 + (row_c['Height']-row_d['Height'])**2)
+        for i2,r_i in inter_data.iterrows():
+            d=np.sqrt((r_c['Weight']-r_i['Weight'])**2 + (r_c['Height']-r_i['Height'])**2)
             diff_list.append(d)
         data_set[i] = diff_list
         i += 1
 
-    C=[]
+    pos_list=[]
     for index,row in data_set.iterrows():
         min_dist=row[1]
         pos=1
@@ -80,8 +80,8 @@ while(diff!=0):
             if row[l+1] < min_dist:
                 min_dist = row[l+1]
                 pos=l+1
-        C.append(pos)
-    data_set['Cluster']=C
+        pos_list.append(pos)
+    data_set['Cluster'] = pos_list
     new_cent = data_set.groupby(['Cluster']).mean()[['Weight','Height']]
     if j == 0:
         diff=1
